@@ -1,0 +1,118 @@
+    <?php
+        $auto = 'true';
+        $speed = '500';
+        $next_back = 'true';
+        $nav_ctrl = 'true';
+        $rows = 1;
+        $i = 0;
+    ?>
+    <?php $baseUrl = $this->getBaseUrl(); ?>
+    <?php $mediaUrl = $this->getMediaUrl(); ?>
+    <div class="testimonial-sidebar">   
+        <div class="container">
+        <?php $latestTestimonial = $this->getCollection()?>
+        <?php if(count($latestTestimonial) > 0):?>
+            <div class="modul-title2">
+                <h2><?= __('What Our Clients Say')?></h2>
+            </div>
+            <div class="block-content">
+            <div class="owl-container">
+                <div class="owl">     
+                    <?php foreach($latestTestimonial as $item):?>
+                        <?php if($i % $rows == 0) echo "<div class='testimonial-list'>"; ?>                             
+                            <div class="testimonial-sidebar-content">                       
+                                <div class="content"> 
+                                    <a href="<?php echo $this->getUrl('testimonial')?>">                            
+                                    <?php                                   
+                                        $_description = $item->getData('testimonial'); 
+                                        $short_desc = substr($_description, 0, 300);
+                                        if(strlen($short_desc) == strlen($_description))
+                                            return $_description;
+                                        if(substr($short_desc, 0, strrpos($short_desc, ' '))!='') {
+                                            $short_desc = substr($short_desc, 0, strrpos($short_desc, ' '));
+                                            $short_desc = $short_desc.'...';
+                                        }     
+
+                                        echo $short_desc; ?>                         
+                                    </a>                    
+                                </div>                      
+                                            
+                            </div>
+                            <?php $i++;?>
+                        <?php if($i %$rows == 0) echo "</div>"; ?>                    
+                    <?php endforeach; ?>
+                        <?php if($i %$rows != 0) echo "</div>"; ?>      
+                </div>
+                
+                </div>
+                <ul class="thumb">
+                    <?php $j = 0; ?>
+                    <?php foreach($latestTestimonial as $item): ?>
+                        <?php
+                        if($item->getData('avatar_path') != ''){
+                            $avatarLink = $mediaUrl .$item->getData('avatar_path');
+                            ?><li onclick="testislider(<?= $j ?>)" class="testithumb<?php echo $j.' ';if($j == 0) echo 'active'; ?>"><img src="<?php echo $avatarLink ?>" alt="test" height="120" width="120"/></li><?php
+                        }
+                        $j++;
+                        ?>
+                    <?php endforeach; ?>
+<script type="text/javascript">
+        require(['jquery','owl_car'], function($){          
+            $(".testimonial-sidebar .owl").owlCarousel({
+                autoPlay : <?php if($auto) echo 'true'; else echo 'false'; ?>,
+                items : 1,
+                itemsDesktop : [1199,1],
+                itemsDesktopSmall : [991,1],
+                itemsTablet: [700,1],
+                itemsMobile : [400,1],
+                slideSpeed : <?php if($speed) echo $speed; else echo '500'; ?>,
+                paginationSpeed : <?php if($speed) echo $speed; else echo '500'; ?>,
+                rewindSpeed : <?php if($speed) echo $speed; else echo '500'; ?>,
+                navigation : <?php if($next_back) echo 'true'; else echo 'false'; ?>,
+                stopOnHover : true,
+                pagination : <?php if($nav_ctrl) echo 'true'; else echo 'false'; ?>,
+                scrollPerPage:true,
+                afterMove: function(){
+                    x = $( ".testimonial-sidebar .owl-pagination .owl-page" ).index( $( ".testimonial-sidebar .owl-pagination .active" ));
+                    var testithumb = ".testithumb"+x;
+                    $(".testimonial-sidebar .thumb li").removeClass('active');
+                    $(testithumb).addClass('active');
+                }
+            });
+               
+        });
+        
+        function testislider(x) {
+          require(['jquery', 'owl_car'], function($){
+            $(".testimonial-sidebar .owl").data('owlCarousel').goTo(x);         
+          });
+          
+        }      
+    </script>
+                </ul>
+            </div>  
+        <?php endif; ?>  
+        </div>
+    </div>
+    <?php
+$value = $this->helper('Baniwal\Testimonials\Helper\Data')->getConfig('testimonials/general/infinitescroll');;
+?>
+<?php if ($value): ?>
+    <script>
+        require(['jquery', 'testimonialscroll', 'testimonialmodal'], function ($) {
+            jQuery('.toolbar-number').css("display", "none");
+            var ias = $.ias({
+                container: "#maincontent",
+                item: ".testimonial-item-dv",
+                pagination: ".pages",
+                next: ".pages .pages-item-next a"
+            });
+            ias.extension(new IASSpinnerExtension());
+            ias.extension(new IASNoneLeftExtension({text: 'There are no more pages left to load.'}));
+            ias.extension(new IASPagingExtension());
+            ias.extension(new IASHistoryExtension());
+
+        });
+    </script>
+<?php endif; ?>
+    

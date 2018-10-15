@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Baniwal_Testimonials::css/owl.carousel.css"/>
+        <css src="Baniwal_Testimonials::css/owl.theme.css"/>
+        <css src="Baniwal_Testimonials::css/owl.testimonial.css"/>
+        <css src="Baniwal_Testimonials::css/bootstrap-modal.css"/>
+        <css src="Baniwal_Testimonials::css/testimonial.css"/>
+    </head>
+	<body>
+		<referenceContainer name="sidebar.main">
+            <block class="Baniwal\Testimonials\Block\Testimonialssidebar" name="testimonial_sidebar" as="testimonial_sidebar" template="Baniwal_Testimonials::testimonial_sidebar.phtml" ifconfig="testimonials/general/position"/>
+        </referenceContainer>
+		<referenceBlock name="top.links">
+			<block class="Baniwal\Testimonials\Block\Top\Link" name="testimonials-link" ifconfig="testimonials/general/top_menu_link"/>
+		</referenceBlock>
+		<referenceBlock name="footer_links">
+			<block class="Baniwal\Testimonials\Block\Top\Link" name="testimonials-link-footer" ifconfig="testimonials/general/footer_link"/>
+		</referenceBlock>
+	</body>
+</page>

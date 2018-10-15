@@ -1,0 +1,68 @@
+<?php
+$users = $this->getcustomerSession();
+$firstname = $users['firstname'];
+$email = $users['email'];
+$cid = $users['entity_id'];
+?>
+<form method="POST" enctype='multipart/form-data' action="<?php echo $this->getUrl('testimonials/index/post'); ?>"
+      data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+    <?php
+    if (isset($cid) && $cid != '') {
+        ?>
+        <input type="hidden" name="customer_id" value="<?php echo $cid; ?>">
+        <?php
+    }
+    ?>
+
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="name"><span><?php echo __('Name') ?></span></label>
+            <div class="control">
+                <input name="name" id="name" title="<?php echo __('name') ?>"
+                       value="<?php if (isset($firstname) && $firstname != '') {
+                           echo $firstname;
+                       } else {
+                           echo '';
+                       } ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="name"><span><?php echo __('Email') ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?php echo __('email') ?>"
+                       value="<?php if (isset($email) && $email != '') {
+                           echo $email;
+                       } else {
+                           echo '';
+                       } ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+
+        <div class="field avatar_path">
+            <label class="label" for="avatar_path"><span><?php echo __('Upload Avatar') ?></span></label>
+            <div class="control">
+                <input type="file" name="avatar_path" id="avatar_path" title="<?php echo __('Upload Avatar') ?>"/>
+
+            </div>
+        </div>
+
+        <div class="field testimonial required">
+            <label class="label" for="testimonial"><span><?php echo __('Testimonial') ?></span></label>
+            <div class="control">
+                <textarea rows="4" cols="50" data-validate="{required:true}" rows="4" cols="50" name="testimonial"
+                          id="testimonial" title="<?php echo __('Testimonial') ?>"></textarea>
+
+            </div>
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?php echo __('Submit') ?>" class="action submit primary">
+                    <span><?php echo __('Submit') ?></span>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+
+
+</form>

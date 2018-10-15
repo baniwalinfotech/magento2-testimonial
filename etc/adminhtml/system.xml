@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © 2015 Magento. All rights reserved.
+* See COPYING.txt for license details.
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<system>
+		<tab id="baniwal" translate="label" sortOrder="2000">
+            <label>Baniwal</label>
+        </tab>
+		<section id="testimonials" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Testimonials</label>
+			<tab>baniwal</tab>
+			<!-- resource tag name which we have to defined in the acl.xml -->
+			<resource>Baniwal_Testimonials::config_testimonials</resource>
+				<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Extension Configuration</label>
+					<field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Enabled</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					</field>
+					<field id="review" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Review required for testimonials?</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					</field>
+					<field id="position" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Display in Sidebar</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					</field>
+					<field id="top_menu_link" type="select" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Add Links into Top Menu</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+						<depends><field id="active">1</field></depends>
+					</field>
+					<field id="footer_link" type="select" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Add Links into Footer Links</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+						<depends><field id="active">1</field></depends>
+					</field>
+					<field id="top_menu_title" type="text" sortOrder="72" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Top Menu/Footer Link Title</label>
+						<depends><field id="active">1</field></depends>
+					</field>
+					<field id="list_url" type="text" sortOrder="73" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Testimonials url</label>
+						<depends><field id="active">1</field></depends>
+					</field>
+					<field id="infinitescroll" translate="label" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+						<label>Enable Infinite Scroll</label>
+						<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					</field>
+				</group>
+				
+		</section>
+		
+	</system>
+</config>

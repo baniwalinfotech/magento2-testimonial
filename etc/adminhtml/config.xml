@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+	<default>
+	   <testimonials><!-- tag of the system.xml section -->
+			<general><!-- tag of the system.xml group -->
+				<list_url>testimonials</list_url><!-- tag of the system.xml field -->
+			</general>
+	   </testimonials>
+	</default>
+</config>

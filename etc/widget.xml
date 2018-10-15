@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="testmonials" class="Baniwal\Testimonials\Block\Widget" is_email_compatible="true"
+            placeholder_image="Baniwal_Testimonials::images/quote-icon.png" ttl="86400" >
+        <label translate="true">Testimonials</label>
+        <description translate="true">Add testimonial widget anywhere in site</description>
+        <parameters>
+           <parameter name="order" xsi:type="select" visible="true">
+                <label translate="true">Order</label>
+				<options>
+                    <option name="accending" value="accending" selected="true">
+                        <label translate="true">Accending by date</label>
+                    </option>
+                    <option name="descending" value="descending">
+                        <label translate="true">Descending by date</label>
+                    </option>
+					<option name="random" value="random">
+                        <label translate="true">Random</label>
+                    </option>
+                </options>
+            </parameter>
+			<parameter name="count" xsi:type="text" visible="true">
+                <label translate="true">Count</label>	
+            </parameter>
+         
+        </parameters>
+        
+    </widget>
+</widgets>

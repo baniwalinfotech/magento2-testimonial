@@ -1,0 +1,11 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+		<update id="Baniwal_Core::core" title="Baniwal Extensions" module="Baniwal_Testimonials" sortOrder="40" resource="Baniwal_Testimonials::testimonials"/>
+		
+        <add id="Baniwal_Testimonials::testimonials" title="Testimonials" module="Baniwal_Testimonials" sortOrder="70" parent="Baniwal_Core::core" resource="Baniwal_Testimonials::testimonials"/>
+		
+        <add id="Baniwal_Testimonials::manage_items" title="Testimonials" module="Baniwal_Testimonials" sortOrder="80" parent="Baniwal_Testimonials::testimonials" action="testimonials/index/" resource="Baniwal_Testimonials::testimonials"/>
+		
+		<add id="Baniwal_Testimonials::settings" title="Settings" module="Baniwal_Testimonials" sortOrder="90" resource="Baniwal_Testimonials::settings" action="adminhtml/system_config/edit/section/testimonials" parent="Baniwal_Testimonials::testimonials"/>
+    </menu>
+</config>
